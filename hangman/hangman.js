@@ -102,7 +102,6 @@ while (flag == 0) {
                     console.log("Congratulations! You've won. The word was:", word2);
                     flag = 1;
                 }
-                hangman_bana(lives);
             }
             //exit the while loop
             else if(lives == 0){
