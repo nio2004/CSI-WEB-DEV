@@ -1,0 +1,76 @@
+body{
+    background-color: #EBE4D1;
+}
+
+.navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #E55604;
+    overflow: hidden;
+    display: block;
+    border-radius: 5px;
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+.navbar li a{
+    text-decoration: none;
+} 
+
+.navbar li{
+    float: left;
+    padding: 10px;
+    font-family: 'Mooli', sans-serif;
+    color: rgb(255, 237, 231);
+}
+
+#scorecard {
+    background-color: #26577C;
+    width: 90%;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    flex-wrap: wrap; 
+    padding: 5%;
+}
+
+.team1,
+.team2 {
+    background-color: #B4B4B3;
+    flex: 1; 
+    border-radius: 10px;
+    margin-left: 10%; 
+    margin-right: 10%;
+    min-height: 200px; 
+}
+
+#scorecard p{
+    color: white;
+    font-family: "Helvetica", "Times New Roman";
+    font-size: 45px;
+}
+
+
+.t1name, .t2name {
+    background-color: #000000;
+    flex: 1; 
+    border-radius: 10px;
+    margin-left: 2.5%; 
+    margin-right: 2.5%;
+    min-height: 200px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 10px;
+    text-align: center; /* Center-align text */
+}
+
+
+.t1name p, .t2name p {
+    color: white;
+    font-family: "Helvetica", "Times New Roman";
+    font-size: 14px; /* Adjust the font size as needed */
+}
+
