@@ -45,6 +45,34 @@ function update_underscores(word, guessedletters){
     return(a);
 }
 
+function hangman_bana(lives){
+    switch (lives) {
+        case 5:
+            console.log(" +--+\n O   |\n   |\n    |\n========");
+            break;
+        
+        case 4:
+            console.log(" +--+\n O  |\n |  |\n    |\n========");
+            break;
+
+        case 3:
+            console.log(" +--+\n O  |\n/|  |\n    |\n========");
+            break;
+
+        case 2:
+            console.log(" +--+\n O   |\n/|\\  |\n/    |\n========");
+            break;
+
+        case 1:
+            console.log(" +--+\n O   |\n/|\\  |\n/ \\  |\n========");
+            break;
+
+        case 0:
+            console.log(" +--+\n O   |\n/|\\  |\n/ \\  |\n========");
+            break;
+    }
+}
+
 word2 = random_word_generator();
 console.log("Let's begin. Lives left:", lives);
 guessed_word = generate_underscores(word2);
@@ -74,16 +102,19 @@ while (flag == 0) {
                     console.log("Congratulations! You've won. The word was:", word2);
                     flag = 1;
                 }
+                hangman_bana(lives);
             }
             //exit the while loop
             else if(lives == 0){
                 console.log("All lives exhausted. Game over. The word was ", word2);
+                hangman_bana(lives);
                 flag = 1;
             }
             //guessed letter is wrong; decrement lives by 1
             else{
                 lives--;
                 console.log(guessed_word, "Lives left: ", lives);
+                hangman_bana(lives);
             }
         } else {
             // throw an error if the input is not a single letter
