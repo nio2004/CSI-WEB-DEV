@@ -1,76 +1,134 @@
-body{
+body {
+    margin: 0;
+    padding: 0;
     background-color: #EBE4D1;
 }
 
+.navbar img {
+    margin-right: 10px;
+    margin-left: 5px;
+    margin-top: 5px;
+    width: 75px;
+    height: 75px;
+}
+
 .navbar {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+    display: flex;
     background-color: #E55604;
-    overflow: hidden;
-    display: block;
-    border-radius: 5px;
-    font-size: 45px;
-    margin-bottom: 10px;
+    color: #fff; 
+    padding: 2px; 
+    border-color: #26577C;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
-.navbar li a{
-    text-decoration: none;
-} 
-
-.navbar li{
-    float: left;
-    padding: 10px;
-    font-family: 'Mooli', sans-serif;
-    color: rgb(255, 237, 231);
+.navbar ul {
+    list-style: none;
+    padding-left: 20px;
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: 35px;
+    font-family: "Helvetica", "Times New Roman";
 }
 
-#scorecard {
+.navbar li {
+    padding: 25px;
+    display: inline; 
+    margin-right: 20px; 
+    font-size: 35px;
+}
+
+.scorecard {
+    width: 22.5%;
+    height: 315px;
     background-color: #26577C;
-    width: 90%;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    flex-wrap: wrap; 
-    padding: 5%;
-}
-
-.team1,
-.team2 {
-    background-color: #B4B4B3;
-    flex: 1; 
-    border-radius: 10px;
-    margin-left: 10%; 
-    margin-right: 10%;
-    min-height: 200px; 
-}
-
-#scorecard p{
-    color: white;
+    margin-right: 5px;
+    margin-top: 10px;
+    margin-left: 10px;
+    border-radius: 20px;
     font-family: "Helvetica", "Times New Roman";
-    font-size: 45px;
-}
-
-
-.t1name, .t2name {
-    background-color: #000000;
-    flex: 1; 
-    border-radius: 10px;
-    margin-left: 2.5%; 
-    margin-right: 2.5%;
-    min-height: 200px; 
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
     padding: 10px;
-    text-align: center; /* Center-align text */
+    text-align: center;
+    display: block;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-
-.t1name p, .t2name p {
-    color: white;
-    font-family: "Helvetica", "Times New Roman";
-    font-size: 14px; /* Adjust the font size as needed */
+.team-container, .score-container, .logo-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
+.team1, .team2, .t1score, .t2score {
+    margin: 5px;
+    font-size: 30px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.t1score {
+    margin-right: 66.5px;
+}
+
+.t2score {
+    margin-left: 66.5px;
+}
+
+.team1 {
+    margin-right: 10px;
+}
+
+.team2 {
+    margin-left: 10px;
+}
+
+.logo-container img {
+    height: 100px;
+    width: auto;
+    margin: 25px;
+    background-image: none;
+}
+
+.scorecard-container {
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+}
+
+.datetime {
+    margin: 2px;
+    font-weight: 500;
+    font-size: 15px;
+    color: #ffffff;
+}
+
+@media screen and (max-width: 768px) {
+    .navbar img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .navbar ul {
+        font-size: 20px;
+    }
+
+    .navbar li {
+        padding: 15px;
+        margin-right: 10px;
+    }
+
+    .scorecard {
+        width: 45%; 
+
+    .team1, .team2, .t1score, .t2score {
+        font-size: 20px;
+    }
+
+    .datetime {
+        font-size: 12px;
+    }
+}
+}
