@@ -1,8 +1,24 @@
-const apiUrl = 'https://ergast.com/api/f1/current.json';
+const apiUrl2='http://ergast.com/api/f1/2022/results/1.json';
 const left=document.getElementById('left');
 const right=document.getElementById('right');
 
-fetch(apiUrl)
+
+let races = []; 
+let index = 0;
+
+left.addEventListener('click', function () {
+    index = (index + 1 + races.length) % races.length;
+    updateContent(races[index]);
+});
+
+right.addEventListener('click', function () {
+    index = (index - 1 + races.length) % races.length;
+    updateContent(races[index]);
+});
+
+
+
+fetch(apiUrl2)
   .then(response => {
     if (!response.ok) {
       throw new Error('Network response was not ok');
@@ -10,38 +26,32 @@ fetch(apiUrl)
     return response.json();
   })
   .then(data => {
-    // Process the data here
     console.log('API Response:', data);
-    let races=data.MRData.RaceTable.Races;
-    let index=0%races.length;
+    races=data.MRData.RaceTable.Races;
+    updateContent(races[index]);
     
-    if(races.length>0){
-        var round=races[index].round;
-        var grandPrixName=races[index].raceName;
-        var circuitName=races[index].Circuit.circuitName;
-        var country=races[index].Circuit.Location.country;
-        var city=races[index].Circuit.Location.locality;
-        var date=races[index].date;
-        var time=races[index].time;
-        var url=races[index].url
-    }
-    console.log(url);
-    console.log(grandPrixName);
-    document.getElementById('round-number').innerText=round;
-    document.getElementById('grandprix-name').innerHTML=grandPrixName;
-    document.getElementById('circuit-name').innerText=circuitName;
-    document.getElementById('country').innerText=country;
-    document.getElementById('city').innerText=city;
-    document.getElementById('date').innerText=date;
-    document.getElementById('time').innerText=time;
-    document.getElementById('grandprix-name2').innerText=grandPrixName;
-    document.getElementById('url').href=url;
     
-
-  })
+ })
   .catch(error => {
     console.error('There has been a problem with your fetch operation:', error);
   });
 
 
-  
+
+      
+      function updateContent(race){
+        document.getElementById('round-number').innerText=race.round;
+        document.getElementById('grandprix-name').innerHTML=race.raceName;
+        document.getElementById('circuit-name').innerText=race.Circuit.circuitName;
+        document.getElementById('country').innerText=race.Circuit.Location.country;
+        document.getElementById('city').innerText=race.Circuit.Location.locality;
+        document.getElementById('date').innerText=race.date;
+        document.getElementById('time').innerText=race.time;
+        document.getElementById('grandprix-name2').innerText=race.raceName;
+        document.getElementById('url').href=race.url;
+        document.getElementById('winner').innerText=race.Results[0].Driver.givenName +' ' + race.Results[0].Driver.familyName;
+        }
+
+
+
+
