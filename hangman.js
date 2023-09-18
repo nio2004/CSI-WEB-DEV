@@ -10,7 +10,7 @@ let secret_word = "";
 let lives = 5; 
 let lives_left = lives;
 
-//selecting a random target word from the list
+//selecting a random secret word from the list
 function SelectSecretWord(){
     const i = Math.floor(Math.random() * words_list.length);
     return words_list[i];
