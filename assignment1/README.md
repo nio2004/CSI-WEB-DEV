@@ -1,3 +1,7 @@
 Project 1
 
-![Alt text](image-1.png)
+![Image1](image-1.png)
+
+ScoreBoard
+
+![Image2](image.png)
