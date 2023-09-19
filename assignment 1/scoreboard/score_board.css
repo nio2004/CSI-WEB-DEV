@@ -132,3 +132,9 @@ body {
     }
 }
 }
+
+.instructions{
+    font-family: "Helvetica", "Times New Roman";
+    font-size: 20px;
+    margin: 10px;
+}
