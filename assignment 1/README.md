@@ -5,6 +5,7 @@ Part a] A Hangman Game using js played in the browser console: From a pre-define
   2. Open browser then inspect the page and open the console
   4. Copy and paste local url of the html file on the browser
   5. Game will begin in the console, you can guess in the prompt window
+
 ![image](https://github.com/nio2004/CSI-WEB-DEV/assets/123110966/913ac782-65ec-44b5-beee-be139aac99fb)
 
 Part b] A website that displays sport scores in real-time: We fetche data from football-api and load in onto the front-end. I have chosen the current Champions league (2023). Each card is for one match. The cards show the current score, date and time of the match. Currently, data of all UEFA Champions League 2023 is being fetched. In case the cards do not load, it means that either the API is down, or my daily request limit of 100 has been reached. You can try later in that case. 
