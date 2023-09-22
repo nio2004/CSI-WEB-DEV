@@ -1,13 +1,12 @@
 .card-{
-    width: 200px;
-    height: 300px;
-    background-image: url('../card-images/jigglypuff.png');
+    width: 100px;
+    height: 150px;
 }
 
 .card-flipped{
-    width: 200px;
-    height: 300px;
-    background-image: url('../card-images/download.jpg');
+    width: 100px;
+    height: 150px;
+    background-image: url('../card-images/archer.png');
 }
 
 .card-inner{

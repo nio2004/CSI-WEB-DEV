@@ -11,13 +11,9 @@ function Grid(){
     for(let row = 0; row < numRows; row++){
       const rowItems = [];
       for (let col = 0; col < numCols; col++) {
-        // Pass frontImage and backImage props to each Card
+
         rowItems.push(
-          <Card
-            
-            frontImage="../card-images/jigglypuff.png" // Adjust the path as needed
-            backImage="../card-images/jigglypuff.png"   // Replace with your actual image URL
-          />  
+          <Card frontImage="https://picsum.photos/100/150" />
         );
       }
       grid.push(
