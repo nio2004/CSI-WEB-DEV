@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import './card.css';
 
-function Card(){
+function Card({ frontImage, backImage }){
     const [isFlipped, setisFlipped] = useState(false);
 
     const flipCard = () => {
@@ -8,9 +9,12 @@ function Card(){
     };
 
     return (
-        <div className={`card ${isFlipped ? 'flipped' : ''}`} onClick={flipCard}>
-          {isFlipped ? 'Back' : 'Front'}
-        </div>
+    <div
+      className={`card-${isFlipped ? 'flipped' : ''}`}
+      onClick={flipCard}>
+      {isFlipped ? 'Back' : 'Front'}
+    </div>
+    
       );
     }
 

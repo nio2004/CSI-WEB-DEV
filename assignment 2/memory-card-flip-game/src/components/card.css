@@ -1,0 +1,39 @@
+.card-{
+    width: 200px;
+    height: 300px;
+    background-image: url('../card-images/jigglypuff.png');
+}
+
+.card-flipped{
+    width: 200px;
+    height: 300px;
+    background-image: url('../card-images/download.jpg');
+}
+
+.card-inner{
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s;
+    transform-style: preserve-3d;
+}
+
+.card-front, .card-back{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    background-size: cover;
+    background-position: center;
+}
+
+.card-front{
+    transform: rotateY(0deg);
+}
+
+.card-front{
+    transform: rotateY(180deg);
+}
+
+.card.flipped .card-inner {
+    transform: rotateY(180deg);
+  }
