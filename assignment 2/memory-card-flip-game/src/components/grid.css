@@ -1,0 +1,9 @@
+/* Grid.css */
+.grid {
+    align-items: center;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr); 
+    grid-gap: 3px; 
+  }
+  

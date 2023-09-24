@@ -1,38 +1,77 @@
-.card-{
+.card{
     width: 100px;
     height: 150px;
+    background-image: url('../card-images/card-back.png');
+    margin: 30px;
 }
 
-.card-flipped{
+.card-image-1-flipped{
     width: 100px;
     height: 150px;
-    background-image: url('../card-images/archer.png');
+    background-image: url('../card-images/card-image-1.png');
+    margin: 30px;
+}
+
+.card-image-2-flipped{
+    width: 100px;
+    height: 150px;
+    background-image: url('../card-images/card-image-2.png');
+    margin: 30px;
+}
+
+.card-image-3-flipped{
+    width: 100px;
+    height: 150px;
+    background-image: url('../card-images/card-image-3.png');
+    margin: 30px;
+}
+
+.card-image-4-flipped{
+    width: 100px;
+    height: 150px;
+    background-image: url('../card-images/card-image-4.png');
+    margin: 30px;
+}
+
+.card-image-5-flipped{
+    width: 100px;
+    height: 150px;
+    background-image: url('../card-images/card-image-5.png');
+    margin: 30px;
+}
+
+.card-image-6-flipped{
+    width: 100px;
+    height: 150px;
+    background-image: url('../card-images/card-image-6.png');
+    margin: 30px;
+}
+
+.card-image-7-flipped{
+    width: 100px;
+    height: 150px;
+    background-image: url('../card-images/card-image-7.png');
+    margin: 30px;
+}
+
+.card-image-8-flipped{
+    width: 100px;
+    height: 150px;
+    background-image: url('../card-images/card-image-8.png');
+    margin: 30px;
 }
 
 .card-inner{
     width: 100%;
     height: 100%;
-    transition: transform 0.5s;
-    transform-style: preserve-3d;
 }
 
-.card-front, .card-back{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    backface-visibility: hidden;
-    background-size: cover;
-    background-position: center;
-}
-
-.card-front{
+  .card-front {
     transform: rotateY(0deg);
-}
-
-.card-front{
-    transform: rotateY(180deg);
-}
-
-.card.flipped .card-inner {
-    transform: rotateY(180deg);
   }
+  
+  .card-back {
+    transform: rotateY(180deg);
+    transform-origin: right; 
+  }
+  

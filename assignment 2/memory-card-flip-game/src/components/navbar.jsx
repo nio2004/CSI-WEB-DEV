@@ -7,6 +7,7 @@ function Navbar() {
     <nav className="nav">
       <ul>
         <li>Memory Card Game using React</li>
+        <li>Hello world</li>
       </ul>
     </nav>
   );

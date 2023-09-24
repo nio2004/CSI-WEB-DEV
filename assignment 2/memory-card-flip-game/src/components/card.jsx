@@ -1,26 +1,41 @@
-import React, { useState } from "react";
-import './card.css';
+import React, { useState, useEffect } from "react";
+import "./card.css";
 
-function Card({ frontImage }){
-    const [isFlipped, setisFlipped] = useState(false);
+function Card({ className }) {
+  const [isFlipped, setIsFlipped] = useState(false);
+  const [autoFlipTimeout, setAutoFlipTimeout] = useState(null);
 
-    const flipCard = () => {
-        setisFlipped(!isFlipped);
-    };
+  const flipCard = () => {
+    setIsFlipped(!isFlipped);
 
-    return (
-      <div
-        className={`card-${isFlipped ? 'flipped' : ''}`}
-        onClick={flipCard}
-        style={{
-          backgroundImage: `url(${frontImage})`,
-        }}>
-      <p>{isFlipped ? "Flipped" : "Not Flipped"}</p>
-      </div>
-    );
-    
+    if (autoFlipTimeout) {
+      clearTimeout(autoFlipTimeout);
     }
 
-export default Card;
+    const newAutoFlipTimeout = setTimeout(() => {
+      setIsFlipped(false);
+    }, 3000); 
 
-    
+    setAutoFlipTimeout(newAutoFlipTimeout);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (autoFlipTimeout) {
+        clearTimeout(autoFlipTimeout);
+      }
+    };
+  }, [autoFlipTimeout]);
+
+  return (
+    <div className="card-container">
+      <div
+        className={`card ${className}-${isFlipped ? "flipped" : ""}`}
+        onClick={flipCard}
+      >
+      </div>
+    </div>
+  );
+}
+
+export default Card;
