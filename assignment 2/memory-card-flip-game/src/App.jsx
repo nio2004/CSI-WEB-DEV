@@ -1,4 +1,3 @@
-// App.js
 import React from 'react';
 import Navbar from './components/navbar';
 import Grid from './components/grid';

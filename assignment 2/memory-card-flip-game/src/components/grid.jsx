@@ -1,5 +1,4 @@
-// Grid.jsx
-import React, { useState } from "react";
+import React, { Component } from "react";
 import Card from "./card";
 import "./grid.css";
 
@@ -31,28 +30,20 @@ function shuffleArray(array) {
 
 shuffleArray(cardClassNames);
 
-function Grid() {
-  const numRows = 4;
-  const numCols = 4;
-
-  const [flippedCardClassNames, setFlippedCardClassNames] = useState([]);
-
-  const handleCardFlip = (className, isFlipped) => {
+class Grid extends Component {
+  handleCardFlip = (className, isFlipped) => {
     if (isFlipped) {
-      setFlippedCardClassNames((prevClassNames) => [...prevClassNames, className]);
+      console.log("Flipped Card Class Name:", className);
     } else {
-      setFlippedCardClassNames((prevClassNames) =>
-        prevClassNames.filter((cn) => cn !== className)
-      );
+      console.log("Unflipped Card Class Name:", className);
     }
   };
 
-  const findFlippedCardClassNames = () => {
-    return flippedCardClassNames.join(", ") || "None";
-  };
-
-  const renderGrid = () => {
+  renderGrid = () => {
+    const numRows = 4;
+    const numCols = 4;
     const grid = [];
+
     for (let row = 0; row < numRows; row++) {
       const rowItems = [];
       for (let col = 0; col < numCols; col++) {
@@ -62,7 +53,7 @@ function Grid() {
           <Card
             key={cardIndex}
             className={className}
-            onCardFlip={(isFlipped) => handleCardFlip(className, isFlipped)}
+            onCardFlip={(isFlipped) => this.handleCardFlip(className, isFlipped)}
           />
         );
       }
@@ -71,14 +62,13 @@ function Grid() {
     return grid;
   };
 
-  return (
-    <div>
-      <div className="grid">{renderGrid()}</div>
+  render() {
+    return (
       <div>
-        <p>Flipped Card Class Names: {findFlippedCardClassNames()}</p>
+        <div className="grid">{this.renderGrid()}</div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default Grid;
