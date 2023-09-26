@@ -43,23 +43,30 @@ class Grid extends Component {
     const numRows = 4;
     const numCols = 4;
     const grid = [];
-
+  
     for (let row = 0; row < numRows; row++) {
       const rowItems = [];
       for (let col = 0; col < numCols; col++) {
         const cardIndex = row * numCols + col;
         const className = cardClassNames[cardIndex];
+        const handleCardFlip = (isFlipped) => {
+          if (isFlipped) {
+            console.log("Flipped Card Class Name:", className);
+          } else {
+            console.log("Unflipped Card Class Name:", className);
+          }
+        };
         rowItems.push(
           <Card
             key={cardIndex}
             className={className}
-            onCardFlip={(isFlipped) => this.handleCardFlip(className, isFlipped)}
+            onCardFlip={handleCardFlip}
           />
         );
       }
       grid.push(<div className="row" key={row}>{rowItems}</div>);
     }
-    return grid;
+    return grid;
   };
 
   render() {
