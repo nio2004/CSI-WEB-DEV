@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Card from "./card";
+import Card from "./card"; // Import your Card component
 import "./grid.css";
-
+import Scoreboard from "./scoreboard";
 const cardClassNames = [
   "card-image-1",
   "card-image-1",
@@ -35,40 +35,43 @@ class Grid extends Component {
     super(props);
     this.state = {
       flippedCards: [],
-      cardFlipCounts: {}, // To store flip counts for each card classname
-      matchingCardCount: 0, // Counter for matching cards
+      score: 0, // Initialize the score
     };
   }
 
   handleCardFlip = (className) => {
-    const { flippedCards, cardFlipCounts, matchingCardCount } = this.state;
-
-    // Update the flipped cards
+    const { flippedCards } = this.state;
     if (flippedCards.includes(className)) {
-      this.setState({
-        flippedCards: flippedCards.filter((c) => c !== className),
-      });
+      this.setState(
+        (prevState) => ({
+          flippedCards: prevState.flippedCards.filter((c) => c !== className),
+        }),
+        this.checkMatch // Check for a match after a card flip
+      );
     } else {
+      this.setState(
+        (prevState) => ({
+          flippedCards: [...prevState.flippedCards, className],
+        }),
+        this.checkMatch // Check for a match after a card flip
+      );
+    }
+  };
+
+  checkMatch = () => {
+    const { flippedCards } = this.state;
+    if (flippedCards.length === 2) {
+      if (flippedCards[0] === flippedCards[1]) {
+        // Match found, increment the score
+        this.setState((prevState) => ({
+          score: prevState.score + 1,
+        }));
+      }
+      // Clear the flipped cards array
       this.setState({
-        flippedCards: [...flippedCards, className],
+        flippedCards: [],
       });
     }
-
-    // Update the flip counts for the card classname
-    const newCardFlipCounts = { ...cardFlipCounts };
-    newCardFlipCounts[className] = (newCardFlipCounts[className] || 0) + 1;
-
-    // Check if there are two flips for the same classname
-    if (newCardFlipCounts[className] === 2) {
-      // Increment the matching card counter
-      this.setState({
-        matchingCardCount: matchingCardCount + 1,
-      });
-    }
-
-    this.setState({
-      cardFlipCounts: newCardFlipCounts,
-    });
   };
 
   renderGrid = () => {
@@ -99,8 +102,8 @@ class Grid extends Component {
   render() {
     return (
       <div>
+        <Scoreboard score={this.state.score} flippedCards={this.state.flippedCards} />
         <div className="grid">{this.renderGrid()}</div>
-        <p>Matching Card Count: {this.state.matchingCardCount}</p>
       </div>
     );
   }

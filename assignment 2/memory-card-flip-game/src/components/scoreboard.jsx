@@ -1,16 +1,19 @@
 import React from "react";
 
-function Scoreboard({ cardFlipCounts }) {
+function Scoreboard({ score, flippedCards }) {
   return (
     <div className="scoreboard">
-      <h2>Scoreboard</h2>
-      <ul>
-        {Object.keys(cardFlipCounts).map((className) => (
-          <li key={className}>
-            {className}: {cardFlipCounts[className]}
-          </li>
-        ))}
-      </ul>
+      <div>
+        <h2>Score: {score}</h2>
+      </div>
+      <div>
+        <h3>Flipped Cards:</h3>
+        <ul>
+          {flippedCards.map((className, index) => (
+            <li key={index}>{className}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
