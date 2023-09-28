@@ -17,13 +17,14 @@ class Card extends Component {
       () => {
         setTimeout(() => {
           this.setState({ isFlipped: false });
-        }, 3000); 
+          this.props.onCardClick();
+        }, 3000);
       }
     );
   };
 
   render() {
-    const { className } = this.props;
+    const { className, flipCount } = this.props;
     const { isFlipped } = this.state;
 
     return (
@@ -31,6 +32,7 @@ class Card extends Component {
         className={`card ${className}-${isFlipped ? "flipped" : ""}`}
         onClick={this.flipCard}
       >
+        <p>Flip Count: {flipCount}</p>
       </div>
     );
   }

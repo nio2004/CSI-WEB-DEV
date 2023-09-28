@@ -31,48 +31,76 @@ function shuffleArray(array) {
 shuffleArray(cardClassNames);
 
 class Grid extends Component {
-  handleCardFlip = (className, isFlipped) => {
-    if (isFlipped) {
-      console.log("Flipped Card Class Name:", className);
+  constructor(props) {
+    super(props);
+    this.state = {
+      flippedCards: [],
+      cardFlipCounts: {}, // To store flip counts for each card classname
+      matchingCardCount: 0, // Counter for matching cards
+    };
+  }
+
+  handleCardFlip = (className) => {
+    const { flippedCards, cardFlipCounts, matchingCardCount } = this.state;
+
+    // Update the flipped cards
+    if (flippedCards.includes(className)) {
+      this.setState({
+        flippedCards: flippedCards.filter((c) => c !== className),
+      });
     } else {
-      console.log("Unflipped Card Class Name:", className);
+      this.setState({
+        flippedCards: [...flippedCards, className],
+      });
     }
+
+    // Update the flip counts for the card classname
+    const newCardFlipCounts = { ...cardFlipCounts };
+    newCardFlipCounts[className] = (newCardFlipCounts[className] || 0) + 1;
+
+    // Check if there are two flips for the same classname
+    if (newCardFlipCounts[className] === 2) {
+      // Increment the matching card counter
+      this.setState({
+        matchingCardCount: matchingCardCount + 1,
+      });
+    }
+
+    this.setState({
+      cardFlipCounts: newCardFlipCounts,
+    });
   };
 
   renderGrid = () => {
     const numRows = 4;
     const numCols = 4;
     const grid = [];
-  
+
     for (let row = 0; row < numRows; row++) {
       const rowItems = [];
       for (let col = 0; col < numCols; col++) {
         const cardIndex = row * numCols + col;
         const className = cardClassNames[cardIndex];
-        const handleCardFlip = (isFlipped) => {
-          if (isFlipped) {
-            console.log("Flipped Card Class Name:", className);
-          } else {
-            console.log("Unflipped Card Class Name:", className);
-          }
-        };
+        const isFlipped = this.state.flippedCards.includes(className);
         rowItems.push(
           <Card
             key={cardIndex}
             className={className}
-            onCardFlip={handleCardFlip}
+            isFlipped={isFlipped}
+            onCardClick={this.handleCardFlip}
           />
         );
       }
       grid.push(<div className="row" key={row}>{rowItems}</div>);
     }
-    return grid;
+    return grid;
   };
 
   render() {
     return (
       <div>
         <div className="grid">{this.renderGrid()}</div>
+        <p>Matching Card Count: {this.state.matchingCardCount}</p>
       </div>
     );
   }
