@@ -1,0 +1,29 @@
+.App.light {
+    background-color: #ffffff;
+    color: #333333;
+  }
+  
+  .App.light button {
+    color: #08c;
+  }
+  
+  .App.light button:hover {
+    color: #04c;
+  }
+  
+  /* Dark Theme */
+  .App.dark {
+    background-color: #333333;
+    color: #ffffff;
+  }
+  
+  .App.dark button {
+    color: #f0f0f0;
+  }
+  
+  .App.dark button:hover {
+    color: #ddd;
+  }
+  
+  /* Add more theme-specific styles as needed */
+  
