@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "tailwindcss": "^3.3.3"
+  },
+  "dependencies": {
+    "@heroicons/react": "^2.0.18",
+    "recharts": "^2.8.0"
+  }
+}
