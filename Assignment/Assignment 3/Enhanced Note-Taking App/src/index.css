@@ -1,0 +1,150 @@
+body {
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
+		'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+		'Droid Sans', 'Helvetica Neue', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas,
+		'Courier New', monospace;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.header h1 {
+  font-size: 60px;
+}
+
+.subheader h2{
+	text-align: center;
+  font-size: 80px;
+}
+
+.dark-mode {
+	background-color: black;
+}
+
+.dark-mode h1 {
+	color: white;
+}
+
+.dark-mode h2 {
+  color: white;
+}
+
+.container {
+	max-width: 1960px;
+	margin-right: 15px;
+	margin-left: 15px;
+  padding: 15px;
+	min-height: 100vh;
+}
+
+.notes-list {
+	display: grid;
+	grid-gap: 5rem;
+	grid-template-columns: repeat(
+		auto-fill,
+		minmax(250px, 1fr)
+	);
+}
+
+.note.new {
+	background-color: #67d7cc;
+}
+
+textarea {
+	border: none;
+	resize: none;
+	background-color: #67d7cc;
+}
+
+textarea:focus {
+	outline: none;
+}
+
+.save {
+	background-color: #e1e1e1;
+	border: none;
+	border-radius: 15px;
+	padding: 5px 10px 5px 10px;
+}
+
+.save:hover {
+	background-color: #15b003;
+	cursor: pointer;
+  color: white;
+}
+
+.note {
+	background-color: pink;
+	border-radius: 10px;
+	padding: 1rem;
+	min-height: 270px;
+  min-width: 270px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	white-space: pre-wrap;
+}
+
+.note-footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.delete {
+	cursor: pointer;
+  background-color: #e1e1e1;
+	border: none;
+	border-radius: 15px;
+	padding: 5px 10px 5px 10px;
+}
+
+.delete:hover {
+	background-color: #e03737;
+	cursor: pointer;
+  color: white;
+}
+
+.search {
+	display: flex;
+  border-style: double;
+	align-items: center;
+	background-color: rgb(206, 204, 204);
+	border-radius: 10px;
+	padding: 5px;
+	margin-bottom: 1.5em;
+}
+
+.search input {
+	border: none;
+  font-size: 25px;
+	background-color: rgb(206, 204, 204);
+	width: 100%;
+}
+
+.search input:focus {
+	outline: none;
+}
+
+.mode {
+  font-size: 40px;
+	background-color: #c6c2c2;
+	border-style: double;
+	border-radius: 25px;
+	padding: 5px 10px 5px 10px;
+}
+
+.mode:hover {
+	background-color: #ededed;
+	cursor: pointer;
+}
