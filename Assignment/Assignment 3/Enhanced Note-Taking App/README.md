@@ -7,4 +7,5 @@ Light Mode -
 
 Dark Mode - 
 
-![Uploading Screenshot (53).png…]()
+
+![Screenshot (54)](https://github.com/nio2004/CSI-WEB-DEV/assets/131904030/f5cdd7a4-c538-46b1-9513-ed87f0af2989)
