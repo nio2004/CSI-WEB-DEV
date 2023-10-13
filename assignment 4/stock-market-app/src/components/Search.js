@@ -51,11 +51,11 @@ const Search = () => {
             <XIcon className='h-4 w-4 fill-gray-500' />
         </button>}
 
-        <button onClick={updateBestMatches} className='h-8 w-8 b-indigo-600 rounded-md flex justify-center items-center m-1 p-2'>
-            <SearchIcon className='h-4 w-4 fill-black-100' />
+        <button onClick={  updateBestMatches } className='h-8 w-8 b-indigo-600 rounded-md flex justify-center items-center m-1 p-2'>
+            <SearchIcon className='h-4 w-4 fill-black-100 bg-indigo-600' />
         </button>
 
-    {input && bestMatches.length > 0 ? <SearchResults results={bestMatches} /> : null}
+    {input && bestMatches.length > 0 ? <SearchResults results={ bestMatches } /> : null}
     </div>
   )
 }
