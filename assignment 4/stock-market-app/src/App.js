@@ -4,6 +4,8 @@ import Dashboard from './components/Dashboard';
 import React, { useState } from 'react';
 import ThemeContext from './context/ThemeContext';
 import StockContext from './context/StockContext';
+import Home from './components/Home';
+import Navbar from './components/Navbar';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -11,10 +13,17 @@ function App() {
   return (
     <ThemeContext.Provider value={{ darkMode, setDarkMode }}>
       <StockContext.Provider value={{stockSymbol, setStockSymbol}}>
-      <Dashboard />
+      <Navbar />
+      <Home />
       </StockContext.Provider>
     </ThemeContext.Provider>
   );
 }
 
 export default App;
+
+/*<ThemeContext.Provider value={{ darkMode, setDarkMode }}>
+      <StockContext.Provider value={{stockSymbol, setStockSymbol}}>
+      <Dashboard />
+      </StockContext.Provider>
+    </ThemeContext.Provider>*/
