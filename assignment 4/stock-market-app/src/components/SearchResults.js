@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import StockContext from "../context/StockContext";
 import ThemeContext from "../context/ThemeContext";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
-const SearchResults = ({ results }) => {  
+const SearchResults = ({ results }) => {
   const { darkMode } = useContext(ThemeContext);
   const { setStockSymbol } = useContext(StockContext);
 
@@ -19,12 +20,14 @@ const SearchResults = ({ results }) => {
           <li
             key={item.symbol}
             className={`cursor-pointer p-4 m-2 flex items-center justify-between rounded-md ${
-              darkMode ? "hover:bg-indigo-600" : "hover:bg-indigo-200 "
+              darkMode ? "hover:bg-indigo-600" : "hover:bg-indigo-200"
             } transition duration-300`}
-            onClick={() => setStockSymbol(item.symbol)}
           >
-            <span>{item.symbol}</span>
-            <span>{item.description}</span>
+            {/* Use the Link component to create the link */}
+            <Link to={`/stock/${item.symbol}`} onClick={() => setStockSymbol(item.symbol)}>
+              <span>{item.symbol}</span>
+              <span>{item.description}</span>
+            </Link>
           </li>
         );
       })}

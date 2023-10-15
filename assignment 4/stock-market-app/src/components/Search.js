@@ -4,8 +4,10 @@ import { XIcon, SearchIcon } from '@heroicons/react/solid';
 import SearchResults from './SearchResults';
 import ThemeContext from '../context/ThemeContext';
 import { searchSymbols } from '../api/stock-api';
+import { useNavigate } from 'react-router-dom';
 
 const Search = () => {
+    const navigate = useNavigate();
     const { darkMode } = useContext(ThemeContext)
     const [input, setInput] = useState('');
     const [bestMatches, setBestMatches] = useState([]);
@@ -13,6 +15,11 @@ const Search = () => {
     const clear = () => {
         setInput("");
         setBestMatches([]);
+    };
+
+    const handleStockClick = (stockName) => {
+      // Navigate to the /stock/stockname route when a stock is clicked
+      navigate(`/stock/${stockName}`);
     };
 
     const updateBestMatches = async () => {
@@ -29,6 +36,7 @@ const Search = () => {
     };
 
   return (
+    
     <div className={`flex items-center my-4 border-2 rounded-md relative z-50 w-96 mx-auto
     ${darkMode ? "bg-gray-900 border-gray-800" : "bg-white border-neutral-200"}`}
 >

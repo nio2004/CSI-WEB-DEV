@@ -1,20 +1,19 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../index.css';
-import Header from './Header';
-import Details from './Details';
-import Overview from './Overview';
-import Chart from './Chart';
-import ThemeContext from '../context/ThemeContext';
-import StockContext from '../context/StockContext';
-import { fetchQuote, fetchStockDetails } from '../api/stock-api';
+import React, { useContext, useEffect, useState } from "react";
+import ThemeContext from "../context/ThemeContext";
+import Overview from "./Overview";
+import Details from "./Details";
+import Chart from "./Chart";
+import Header from "./Header";
+import StockContext from "../context/StockContext";
+import { fetchStockDetails, fetchQuote } from "../api/stock-api";
 
 const Dashboard = () => {
   const { darkMode } = useContext(ThemeContext);
+
   const { stockSymbol } = useContext(StockContext);
-  const navigate = useNavigate(); // Get the navigate function for navigation
 
   const [stockDetails, setStockDetails] = useState({});
+
   const [quote, setQuote] = useState({});
 
   useEffect(() => {
@@ -48,10 +47,10 @@ const Dashboard = () => {
         darkMode ? "bg-gray-900 text-gray-300" : "bg-neutral-100"
       }`}
     >
-      <div className='col-span-1 md:col-span-2 xl:col-span-3 row-span-1 flex justify-start items-center'>
+      <div className="col-span-1 md:col-span-2 xl:col-span-3 row-span-1 flex justify-start items-center">
         <Header name={stockDetails.name} />
       </div>
-      <div className='md:col-span-2 row-span-4'>
+      <div className="md:col-span-2 row-span-4">
         <Chart />
       </div>
       <div>
@@ -63,15 +62,9 @@ const Dashboard = () => {
           currency={stockDetails.currency}
         />
       </div>
-      <div className='row-span-2 xl:row-span-3'>
+      <div className="row-span-2 xl:row-span-3">
         <Details details={stockDetails} />
       </div>
-      <button
-        onClick={() => navigate('/') /* Navigates back to the home page */}
-        className='my-4 bg-blue-500 text-white px-4 py-2 rounded-md'
-      >
-        Go Back to Home
-      </button>
     </div>
   );
 };

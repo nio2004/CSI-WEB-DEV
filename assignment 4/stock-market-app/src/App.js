@@ -10,22 +10,21 @@ import Dashboard from './components/Dashboard';
 
 function App() {
   const { darkMode } = useContext(ThemeContext);
-  const { stockSymbol } = useContext(StockContext);
+  const [stockSymbol, setStockSymbol] = useState("MSFT");
   
 
   const [stockDetails, setStockDetails] = useState({});
   const [quote, setQuote] = useState({});// Initialize stockSymbol with an empty string
 
   return (
+    <StockContext.Provider value={{ stockSymbol, setStockSymbol }}>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route
-          path="/stock/:stockSymbol"
-          element={<Dashboard  />}
-        />
+        <Route path="/stock/:stockSymbol" element={<Dashboard stockSymbol={stockSymbol} />} />
       </Routes>
     </BrowserRouter>
+    </StockContext.Provider>  
   );
 }
 
