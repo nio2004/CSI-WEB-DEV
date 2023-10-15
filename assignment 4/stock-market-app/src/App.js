@@ -1,22 +1,22 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import './index.css'
 import Dashboard from './components/Dashboard';
 import React, { useState } from 'react';
 import ThemeContext from './context/ThemeContext';
 import StockContext from './context/StockContext';
-import Home from './components/Home';
 import Navbar from './components/Navbar';
+import Home from './Pages/Home';
+
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
-  const [stockSymbol, setStockSymbol] = useState("FB");
+  
   return (
-    <ThemeContext.Provider value={{ darkMode, setDarkMode }}>
-      <StockContext.Provider value={{stockSymbol, setStockSymbol}}>
-      <Navbar />
-      <Home />
-      </StockContext.Provider>
-    </ThemeContext.Provider>
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Home />} />
+    </Routes>
+  </BrowserRouter>
   );
 }
 
