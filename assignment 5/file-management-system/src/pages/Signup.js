@@ -1,7 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import "./signup-styles.css";
+import { navigate } from 'react-router-dom';
+import { signUp } from '../services/auth';
 
 function Signup() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const navigate = navigate();
+
+    const handleSignup = async (e) => {
+        e.preventDefault();
+        if (password !== confirmPassword) {
+            alert("Passwords do not match.");
+            return;
+          }
+        try{
+            await signUp(email, password);
+            navigate('/dashboard');
+        }catch (error) {
+            console.error('Signup error:', error.message);
+          }
+    }
     return (
         <div className="signup">
             <div className="div">
@@ -11,23 +31,23 @@ function Signup() {
                 </div>
                 <div className="text-wrapper-2">Let’s get started!</div>
                 <div className="group">
+                <form onSubmit={handleSignup}>
                     <div className="group-2">
-                        <input type="text" className="input-box" placeholder="Email"></input>
-                    </div>
-                    <div className="group-3">
-                        <input type="text" className="input-box" placeholder="Name" />
+                        <input type="text" className="input-box" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}></input>
                     </div>
                     <div className="group-4">
-                        <input type="password" className="input-box" placeholder="Password" />
+                        <input type="password" className="input-box" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                     </div>
                     <div className="group-5">
-                        <input type="password" className="input-box" placeholder="Confirm password" />
+                        <input type="password" className="input-box" placeholder="Confirm password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}/>
                     </div>
-                </div>
-                <div className="overlap-group-wrapper">
-                    <button className="signup-button">Sign up</button>
+                    <div className="overlap-group-wrapper">
+                    <button className="signup-button" type="submit">Sign up</button>
+                    </div>
+                    </form>
                 </div>
             </div>
+            
         </div>
     );
 }
