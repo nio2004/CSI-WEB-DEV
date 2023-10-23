@@ -24,7 +24,7 @@ const SearchResults = ({ results }) => {
             } transition duration-300`}
           >
             {/* Use the Link component to create the link */}
-            <Link to={`/stock/${item.symbol}`} onClick={() => setStockSymbol(item.symbol)}>
+            <Link to={`/stock/:${item.symbol}`} onClick={() => setStockSymbol(item.symbol)}>
               <span>{item.symbol}</span>
               <span>{item.description}</span>
             </Link>
