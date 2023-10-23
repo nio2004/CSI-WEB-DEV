@@ -1,0 +1,194 @@
+.login {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+}
+
+.login .div {
+    background-color: #ffffff;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.login .overlap {
+    position: absolute;
+    width: 850px;
+    height: 1024px;
+    top: 0;
+    left: 0;
+    background-color: #fff199;
+}
+
+.login .text-wrapper {
+    position: absolute;
+    width: 264px;
+    height: 41px;
+    top: 41px;
+    left: 0;
+    font-family: 'Lobster', sans-serif;
+    font-weight: 400;
+    color: #000000;
+    font-size: 40px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+}
+
+.login .humaaans-space {
+    position: absolute;
+    width: 559px;
+    height: 601px;
+    top: 207px;
+    left: 145px;
+    object-fit: cover;
+}
+
+.login .text-wrapper-2 {
+    position: absolute;
+    top: 251px;
+    left: 978px;
+    font-family: "Inter-Bold", Helvetica;
+    font-weight: 700;
+    color: #000000;
+    font-size: 45px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+}
+
+.login .overlap-group {
+    position: absolute;
+    width: 403px;
+    height: 231px;
+    top: 396px;
+    left: 945px;
+}
+
+.login .group {
+    width: 403px;
+    height: 231px;
+    top: 0;
+    position: absolute;
+    left: 0;
+}
+
+.login .group-2 {
+    width: 405px;
+    height: 39px;
+    top: 0;
+    position: absolute;
+    left: 0;
+}
+
+.login .text-wrapper-3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: "Inter-Regular", Helvetica;
+    font-weight: 400;
+    color: #656565;
+    font-size: 24px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.login .line {
+    position: absolute;
+    width: 403px;
+    height: 1px;
+    top: 38px;
+    left: 0;
+    object-fit: cover;
+}
+
+.login .group-3 {
+    width: 405px;
+    height: 39px;
+    top: 94px;
+    position: absolute;
+    left: 0;
+}
+
+.login .overlap-group-wrapper {
+    width: 401px;
+    height: 51px;
+    top: 180px;
+    position: absolute;
+    left: 0;
+}
+
+.login .div-wrapper {
+    position: relative;
+    width: 399px;
+    height: 51px;
+    background-color: #b17179;
+    border-radius: 15px;
+}
+
+.login .text-wrapper-4 {
+    position: absolute;
+    width: 398px;
+    height: 48px;
+    top: 3px;
+    left: 1px;
+    font-family: "Inter-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 24px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.login .vector {
+    position: absolute;
+    width: 36px;
+    height: 24px;
+    top: 99px;
+    left: 363px;
+}
+
+/* Add these CSS rules to your style.css file */
+
+/* Style for the input boxes */
+/* Modify the CSS rules for the login button */
+
+/* Style for the input boxes */
+.input-box {
+    width: 100%; /* Resize the width to fill the container */
+    padding: 10px;
+    margin: 10px 0;
+    border: none; /* Remove the border */
+    border-bottom: 1px solid #B17179;
+    font-size: 16px;
+  }
+  
+  /* Style for the login button */
+  .login-button {
+    background-color: #B17179; /* Set the button color */
+    color: #fff; /* Text color for the button */
+    width: 100%; /* Make the button as wide as the input elements */
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  /* Hover effect for the login button */
+  .login-button:hover {
+    background-color: #9c5c66; /* Change the color on hover */
+  }
+  
+
+.humaaans-space{
+    background-image: url("login_image.png"); /* Set the path to your image file */
+    background-size: cover; /* Adjust as needed (e.g., cover, contain) */
+    background-repeat: no-repeat;
+    border: none;
+}
