@@ -15,10 +15,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Login />} />
-        </Routes>
-        <ProtectedRoute>
-            {/*add protected routes here */}
-          </ProtectedRoute>
+        </Routes> 
       </div>
     </Router>
   );
