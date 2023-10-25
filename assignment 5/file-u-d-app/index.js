@@ -5,6 +5,7 @@ const bodyParser = require('body-parser'); // Required for parsing form data
 const bcrypt = require('bcrypt'); // Required for password hashing
 const User = require('./user'); // Your user model
 const path = require('path');
+const session = require('express-session');
 const port = 5000;
 
 app.set('view engine', 'ejs');
@@ -100,6 +101,13 @@ app.post('/login', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
+
+app.use(session({
+    secret: 'oinkOink124',
+    resave: false,
+    saveUninitialized: true
+}));
+
 
 
 app.listen(5000)
