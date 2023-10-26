@@ -1,12 +1,12 @@
 const mongoose=require("mongoose")
 
-mongoose.connect("mongodb://localhost:27017/Assignment_5")
+mongoose.connect("mongodb://localhost:27017/Assignment5")
 .then(()=>{
     console.log('mongoose connected');
 })
 .catch((e)=>{
-    console.log('failed');
-});
+    console.log(e);
+})
 
 const logInSchema=new mongoose.Schema({
     name:{
