@@ -1,1 +1,33 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Live Scoreboard</title>
+    <link rel="stylesheet" href="scoreboard.css">
+</head>
+<body>
+    <p class="heading">Football Scoreboard</p>
+    <div class="container">
+        <div class="title-box">
+            <p>Local Team</p>
+            <p id="elapsed">45'</p>
+            <p>Visitor Team</p>
+        </div>
+        <div class="title-box">
+            <div class="team">
+                <img src="" id="homeLogo" alt="">
+                <p id="homeName">Team Name</p>
+            </div>
+            <p id="goals">3 - 1</p>
+            <div class="team">
+                <img src="" id="awayLogo" alt="">
+                <p id="awayName">Team Name</p>
+            </div>
+        </div>
+        <hr>
+        <div id="matchTable" class="matches-table"></div>
+    </div>
+    <script src="scoreboard.js"></script>
+</body>
+</html>
