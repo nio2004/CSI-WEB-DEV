@@ -18,4 +18,4 @@ export function useTheme() {
   return { currentTheme, toggleTheme };
 }
 
-export default useTheme;
+

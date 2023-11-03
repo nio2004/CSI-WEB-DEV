@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import useTheme from './useTheme';
+import {useTheme} from './useTheme';
 
 const NoteTaking = () => {
   const [notes, setNotes] = useState([]);
