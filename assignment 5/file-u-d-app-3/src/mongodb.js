@@ -1,6 +1,6 @@
 const mongoose=require("mongoose")
 
-mongoose.connect("mongodb://localhost:27017/Assignment5")
+mongoose.connect("mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000")
 .then(()=>{
     console.log('mongoose connected');
 })
@@ -19,6 +19,6 @@ const logInSchema=new mongoose.Schema({
     }
 })
 
-const LogInCollection=new mongoose.model('LogInCollection',logInSchema)
+const LogInCollection= mongoose.model('LogInCollection',logInSchema)
 
 module.exports=LogInCollection
