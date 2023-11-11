@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 
 const app = express();
 
+app.use(express.json());
+
 // Connect to MongoDB
 mongoose.connect('mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
@@ -42,6 +44,28 @@ app.post('/register', async(req, res) =>{
   }catch (error) {
     console.error('Error registering user:', error);
     res.status(500).json({ message: 'Registration failed' });
+  }
+});
+
+app.post('/login', async(req, res) =>{
+  console.log('Handling login request');
+  const { username, password } = req.body;
+
+  try {
+    const user = await User.findOne({ username, password });
+
+    if (user) {
+      // Authentication successful
+      res.status(200).json({ message: 'Login successful' });
+      
+
+    } else {
+      // Authentication failed
+      res.status(401).json({ message: 'Invalid credentials' });
+    }
+  } catch (error) {
+    console.error('Error during login:', error);
+    res.status(500).json({ message: 'Login failed' });
   }
 });
 // Register a sample user
