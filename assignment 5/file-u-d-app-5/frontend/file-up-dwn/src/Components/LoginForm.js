@@ -23,6 +23,7 @@ const LoginForm = () => {
       if (response.ok) {
         console.log('Login successful');
         login();
+        navigate('/home')
       } else {
         console.log('Login failed');
       }

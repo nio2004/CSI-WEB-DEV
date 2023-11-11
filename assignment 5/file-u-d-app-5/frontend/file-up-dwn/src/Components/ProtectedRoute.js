@@ -1,12 +1,12 @@
 import React from 'react';
-import { Navigate, Route } from 'react-router-dom';
+import { Outlet, Navigate } from 'react-router-dom';
 import { useAuth } from '../Contexts/AuthContext';
 
-const ProtectedRoute = ({ element, ...props }) => {
+const ProtectedRoute = () => {
     const { isLoggedIn } = useAuth();
 
     return isLoggedIn ? (
-        <Route {...props} element={element} />
+        <Outlet />
     ) : (
         <Navigate to="/login" replace />
     );

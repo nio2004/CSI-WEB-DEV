@@ -1,12 +1,18 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const path = require('path');
+const bodyParser = require('body-parser');
 
 const app = express();
 
-app.use(express.json());
+//app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, '../frontend/file-up-dwn/build')));
+
 
 // Connect to MongoDB
-mongoose.connect('mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000')
   .then(() => {
     console.log('Connected to MongoDB');
     // Start the server after successful MongoDB connection
@@ -26,6 +32,10 @@ const userSchema = new mongoose.Schema({
 });
 
 const User = mongoose.model('User', userSchema);
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/file-up-dwn/build', 'index.html'));
+});
 
 app.post('/register', async(req, res) =>{
   const { username, password } = req.body;
