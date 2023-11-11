@@ -33,7 +33,11 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
-app.get('*', (req, res) => {
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/file-up-dwn/build', 'index.html'));
+});
+
+app.get('/home', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/file-up-dwn/build', 'index.html'));
 });
 
