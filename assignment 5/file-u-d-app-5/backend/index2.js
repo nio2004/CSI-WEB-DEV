@@ -14,23 +14,23 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Multer configuration
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads/'); // specify the directory where files will be saved
+    cb(null, 'uploads/'); // directory where files will be saved
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + '-' + file.originalname); // specify the file name
+    cb(null, Date.now() + '-' + file.originalname); // file name
   },
 });
 const upload = multer({ storage: storage });
 
 // Session configuration
 app.use(session({
-  secret: 'your-secret-key', // Change this to a secure random key
+  secret: 'your-secret-key', 
   resave: false,
   saveUninitialized: true,
   cookie: { secure: false }, // Set to true if using HTTPS
 }));
 
-// Serve static files from the React build directory
+// Serve static files
 app.use(express.static(path.join(__dirname, '../frontend/file-up-dwn/build')));
 
 // Connect to MongoDB
@@ -65,7 +65,6 @@ const fileSchema = new mongoose.Schema({
 const User = mongoose.model('User', userSchema);
 const File = mongoose.model('File', fileSchema);
 
-// Login route
 app.post('/login', async (req, res) => {
   console.log('Handling login request');
   const { username, password } = req.body;
@@ -87,7 +86,6 @@ app.post('/login', async (req, res) => {
   }
 });
 
-// Register route
 
 app.get('/register', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/file-up-dwn/build', 'index.html'));
@@ -113,7 +111,6 @@ app.post('/register', async (req, res) => {
   }
 });
 
-// Example of handling file uploads using Multer
 app.post('/upload', upload.single('file'), async (req, res) => {
   try {
     const file = req.file;
@@ -122,13 +119,13 @@ app.post('/upload', upload.single('file'), async (req, res) => {
     const newFile = new File({
       filename: file.originalname,
       data: file.buffer,
-      uploadedBy: req.session.userId, // Assuming you store the user ID in the session
+      uploadedBy: req.session.userId, // Associating File to User
     });
 
     // Save the file to the MongoDB database
     await newFile.save();
 
-    // Additional processing or response handling can be added here
+
 
     res.json({ message: 'File uploaded successfully' });
   } catch (error) {
