@@ -1,0 +1,23 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+</head>
+<body>
+  <h1>Welcome to the Home Page</h1>
+
+  <!-- File Upload Form -->
+  <form id="uploadForm">
+    <label for="fileInput">Select a file to upload:</label>
+    <input type="file" id="fileInput" name="file" accept=".txt, .pdf, .docx"> <!-- Specify allowed file types if needed -->
+    <button type="button" onclick="uploadFile()">Upload File</button>
+  </form>
+
+  <!-- File Download Link -->
+  <p>Download your file: <a href="/user/download" download>Download</a></p>
+
+  <!-- Script to handle file upload -->
+  <script src="main.js"></script>
+</body>
+</html>
