@@ -30,9 +30,10 @@ function App() {
   }
   return (
     <div className="App">
+      <h1>FILE UPLOAD SYSTEM</h1>
       <form onSubmit={onSubmit}>
-        <input type = "file" name = "file_upload" ref = {fileInput} />
-        <input type = "submit" value = "Submit" />
+        <input type = "file" class="btn btn-dark m-4" name = "file_upload" ref = {fileInput} />
+        <input type = "submit" class="btn btn-primary" value = "Submit" />
 
       </form>
     </div>
