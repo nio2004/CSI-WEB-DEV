@@ -10,8 +10,10 @@ const StockDetail = () => {
     // Fetch detailed stock information based on the symbol
     const fetchStockDetails = async () => {
       try {
-        const response = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=5min&apikey=AWM6XN4NG10JM1BY`);
+        const response = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=Amzn&interval=5min&apikey=AWM6XN4NG10JM1BY`);
         setStockDetails(response.data);
+        // console.log(stockDetails["Time Series (5min)"])
+        console.log(stockDetails)
       } catch (error) {
         console.error(`Error fetching details for ${symbol}:`, error);
       }
@@ -22,7 +24,7 @@ const StockDetail = () => {
 
   return (
     <div>
-      <h2>{JSON.stringify(stockDetails)}</h2>
+      {/* <h2>{stockDetails["Time Series (5min)"]["2023-11-11 19:55:00"]["1. open"]}</h2> */}
       
     </div>
   );
