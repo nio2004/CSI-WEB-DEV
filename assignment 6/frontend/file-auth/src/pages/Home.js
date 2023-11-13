@@ -6,7 +6,6 @@ import Stats from '../components/Stats'
 const Home = () => {
   return (
     <>
-    <Navbar />
     <HeroSection />
     <Stats />
     </>

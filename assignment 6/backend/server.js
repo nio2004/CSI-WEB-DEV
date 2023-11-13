@@ -11,9 +11,8 @@ const secretKey = 'hairyPotter';
 const users = [];
 
 app.get('/', (req, res) => {
-  res.send('Hello, World!');
+  res.sendFile(path.join(__dirname, '../frontend/file-auth/build', 'index.html'));
 });
-
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
@@ -70,5 +69,5 @@ router.post('/register', async (req, res) => {
   });
 
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/file-up-dwn/build', 'index.html'));
+    res.sendFile(path.join(__dirname, '../frontend/file-auth/build', 'index.html'));
   });
