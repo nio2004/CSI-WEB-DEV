@@ -2,6 +2,10 @@ const User = require('../models/userModel');
 const File = require('../models/fileModel');
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs');
+
+
+const uploadDirectory = path.join(__dirname, '..', 'uploads');
 
 // Set up multer storage
 const storage = multer.diskStorage({
@@ -9,12 +13,12 @@ const storage = multer.diskStorage({
     cb(null, 'uploads/'); // Set the destination folder for uploaded files
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + '-' + path.extname(file.originalname)); // Set the file name
+    cb(null,file.originalname); // Set the file name
   },
 });
 
 // Set up multer middleware
-const upload = multer({ storage });
+const upload = multer({ storage: storage });
 
 async function registerUser(req, res) {
   const { username, password } = req.body;
@@ -43,6 +47,9 @@ async function loginUser(req, res) {
     const user = await User.findOne({ username, password });
 
     if (user) {
+      // Set profilePicture property
+      user.profilePicture = user.username; // Set it to an empty string or initialize based on your requirements
+
       // Retrieve the authenticated user from the session
       req.session.user = user;
 
@@ -56,10 +63,25 @@ async function loginUser(req, res) {
   }
 }
 
+
+
 async function uploadFile(req, res) {
   try {
     // Assuming Multer middleware has saved the file and added information to req.file
     const { originalname, mimetype, filename } = req.file;
+
+    // Check if user is authenticated
+    if (!req.session || !req.session.user) {
+      return res.status(401).json({ message: 'User not authenticated' });
+    }
+
+    // Retrieve the authenticated user from the session
+    const user = await User.findById(req.session.user._id);
+
+    // Check if the user object has the save method
+    if (!user || !user.save || typeof user.save !== 'function') {
+      return res.status(500).json({ message: 'Invalid user object' });
+    }
 
     // Create a new File document
     const file = new File({
@@ -72,7 +94,6 @@ async function uploadFile(req, res) {
     await file.save();
 
     // Update the user's profilePicture field with the file reference
-    const user = req.session.user; // Assuming you are using sessions
     user.profilePicture = file.identifier; // or set it to the file ID, depending on your file model structure
 
     // Save the updated user
@@ -87,10 +108,31 @@ async function uploadFile(req, res) {
 
 
 async function downloadFile(req, res) {
-  // Download file logic...
+  try {
+    // Assuming the file identifier is stored in the user's profilePicture field
+    const fileId = req.session.user.profilePicture;
 
-  // Simulate file download
-  res.download('path/to/your/file.txt');
+    // Retrieve the file information from the database
+    const file = await File.findOne({ identifier: fileId });
+
+    if (!file) {
+      return res.status(404).json({ message: 'File not found' });
+    }
+
+    // Construct the file path
+    const filePath = path.join(__dirname, '..', 'uploads', file.originalName);
+
+    // Check if the file exists
+    if (fs.existsSync(filePath)) {
+      // Stream the file to the response
+      res.download(filePath, file.originalName);
+    } else {
+      res.status(404).json({ message: 'File not found on the server' });
+    }
+  } catch (error) {
+    console.error('Error during file download:', error);
+    res.status(500).json({ message: 'File download failed' });
+  }
 }
 
 module.exports = { registerUser, loginUser, uploadFile, downloadFile };

@@ -66,3 +66,31 @@ async function uploadFile() {
         alert('File upload failed');
     }
 }
+
+// main.js
+
+async function downloadFile() {
+    try {
+      // Send a request to the server to initiate the file download
+      const response = await fetch('/user/download');
+  
+      // Assuming the file is sent as an attachment in the response
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+  
+      // Create a link and trigger a click to download the file
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'downloaded-file'; // You can set the desired filename here
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+  
+      // Release the object URL
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Error during file download:', error);
+      alert('File download failed');
+    }
+  }
+  
