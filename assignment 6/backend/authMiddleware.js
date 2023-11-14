@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const { secretKey } = require('./config'); // Replace with your actual secret key
 
 const authenticateMiddleware = (req, res, next) => {
   const token = req.headers.authorization || req.cookies.token;
@@ -8,13 +7,13 @@ const authenticateMiddleware = (req, res, next) => {
     return res.status(401).json({ error: 'Unauthorized: No token provided' });
   }
 
-  jwt.verify(token, secretKey, (err, decoded) => {
+  jwt.verify(token, ACCESS_TOKEN_SECRET, (err, decoded) => {
     if (err) {
       return res.status(403).json({ error: 'Forbidden: Invalid token' });
     }
 
     req.user = {
-      userId: decoded.userId,
+      userId: decoded.username,
       // Add more user properties as needed
     };
 
