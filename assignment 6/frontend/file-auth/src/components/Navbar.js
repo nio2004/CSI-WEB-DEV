@@ -24,7 +24,7 @@ const Navbar = () => {
     <nav className="bg-[#B7CECE] p-4">
       <div className="container mx-auto">
         <div className="flex items-center justify-between">
-          <div className="text-black font-bold text-xl">PDrive</div>
+          <div className="text-black font-bold text-xl"><a href="/">PDrive</a></div>
           <div className="text-black font-bold text-xl">Send Notes</div>
           <div className="flex space-x-4">
             <UserCircleIcon className="w-6 h-6 mr-2" />

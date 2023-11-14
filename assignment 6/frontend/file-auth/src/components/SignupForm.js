@@ -1,10 +1,14 @@
 import React from 'react';
 import axios from 'axios';
 import { useState } from 'react';
+import SucessModal from './RegSuccessModal';
+import { useAuth } from './AuthContext';
 
 const SignupForm = ({ onSignup }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [successModal, setSucessModal] = useState(false);
+    const { isLoggedIn, setIsLoggedIn, login } = useAuth();
 
     const signup = async (username, password) => {
       try{
@@ -12,6 +16,12 @@ const SignupForm = ({ onSignup }) => {
           username, 
           password
         });
+        setIsLoggedIn(false);
+
+        if(response){
+          setSucessModal(true);
+          setIsLoggedIn(true);
+        }
 
       }catch (error){
         console.error("signup failed", error);
@@ -63,6 +73,12 @@ const SignupForm = ({ onSignup }) => {
           </div>
       </div>
   </div>
+  {successModal && (
+        <SucessModal
+          message="New user created!"
+          onClose={() => setSucessModal(false)}
+        />
+      )}
   </section>
     </>
   )

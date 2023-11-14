@@ -3,13 +3,14 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext';
-
+import FailModal from './LoginFailModal';
 
 const LoginForm = () => {
     const navigate = useNavigate();
     const { isLoggedIn, setIsLoggedIn, login } = useAuth();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [showFailModal, setShowFailModal] = useState(false);
 
     const handleLogin = async (event) => {
       event.preventDefault();
@@ -19,8 +20,10 @@ const LoginForm = () => {
         if (token) {
           console.log("Login successful");
           navigate('/dashboard');
+          setIsLoggedIn(true);
         } else {
           console.log("Login failed: No token received");
+          setShowFailModal(true);
         }
       } catch (error) {
         console.error("Login failed", error);
@@ -54,6 +57,12 @@ const LoginForm = () => {
           </div>
       </div>
   </div>
+      {showFailModal && (
+        <FailModal
+          message="Login failed. Please check your credentials and try again."
+          onClose={() => setShowFailModal(false)}
+        />
+      )}
   </section>
     </>
   )

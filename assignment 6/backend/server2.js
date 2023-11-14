@@ -10,6 +10,7 @@ const { verify } = require('jsonwebtoken');
 const { hash, compare } = require('bcryptjs');
 const { database } = require('./database');
 const { PassThrough } = require('stream');
+const { authenticateMiddleware } = require('./authMiddleware');
 const multer = require('multer');
 const {
     createAccessToken,
@@ -30,6 +31,7 @@ server.use(
     }),
   );
 
+  
 server.post('/register', async (req, res) => {
     const { username, password } = req.body;
 
@@ -153,10 +155,27 @@ server.post('/refresh_token', (req, res) => {
   // Endpoint to handle file upload
   server.post('/upload', upload.single('file'), (req, res) => {
     // Access the uploaded file details
-    const file = req.file;
-    if (!file) {
-      return res.status(400).send('No file uploaded.');
-    }
+    const userId = req.user.userId;
 
-    res.send('File uploaded successfully.');
+    // Save the file with the associated user ID
+    const newFile = new File({
+      filename: req.file.filename,
+      user: userId,
+    });
+});
+
+server.get('/user_files', authenticateMiddleware, async (req, res) => {
+  try {
+    // Extract the user ID from the authenticated request
+    const userId = req.user.userId;
+
+    // Query the database for files associated with the user ID
+    const userFiles = await File.find({ user: userId });
+
+    // Respond with the list of files
+    res.json({ files: userFiles });
+  } catch (error) {
+    console.error('Error retrieving user files:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
